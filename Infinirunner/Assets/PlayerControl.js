@@ -1,12 +1,12 @@
 ﻿#pragma strict
 
-private final static var SPEED = 20;
-private final static var GRAVITY = 14;
+public final static var SPEED = 20;
+public final static var GRAVITY = 14;
 
 var Clap : AudioClip;
 
-private var gravityFlipped = false;
-private var clickSwitch: boolean = false;
+public var gravityFlipped = false;
+public var clickSwitch: boolean = false;
 
 function Update() {
 	if(Input.GetButtonDown ("Fire1")){
