@@ -30,3 +30,12 @@ function Update() {
 	rigidbody.velocity.x = SPEED;
 	rigidbody.velocity.y = gravityFlipped ? GRAVITY : -GRAVITY;
 }
+
+
+function OnCollisionEnter(collision : Collision) {
+	for (var contact : ContactPoint in collision.contacts) {
+		print(contact.thisCollider.name + " hit " + contact.otherCollider.name);
+		// Visualize the contact point
+		Debug.DrawRay(contact.point, contact.normal, Color.white);
+	}
+}
