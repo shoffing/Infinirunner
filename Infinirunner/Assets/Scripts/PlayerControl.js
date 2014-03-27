@@ -7,6 +7,7 @@ var clapSound : AudioClip;
 
 private var gravityFlipped = false;
 private var lastCollisionTime : float;
+private var onGround : boolean;
 
 function Update() {
 	if(Input.GetButtonDown("Fire1") || Input.GetKeyDown("space")) {
@@ -18,11 +19,19 @@ function Update() {
 	
 	rigidbody.velocity.x = SPEED;
 	
+	// Raytraces to find empty space
+	if(!Physics.Raycast(transform.position + Vector3(0, 0, 0.45), Vector3(0, gravityFlipped ? 1 : -1, 0), 0.7)) {
+		onGround = false;
+	}
+	
+	// Debug.DrawLine(transform.position + Vector3(0, 0, 0.45), transform.position + Vector3(0, 0, 0.45) + Vector3(0, gravityFlipped ? 1 : -1, 0) * 0.7, Color.red);
+	
 	if(!onGround) {
 		rigidbody.velocity.y = gravityFlipped ? GRAVITY : -GRAVITY;
+	} else {
+		rigidbody.velocity.y = gravityFlipped ? GRAVITY * 0.1 : -GRAVITY * 0.1;
 	}
 }
-
 
 function OnCollisionEnter(collision : Collision) {
 	for (var contact : ContactPoint in collision.contacts) {
@@ -31,8 +40,6 @@ function OnCollisionEnter(collision : Collision) {
 			Application.LoadLevel(Application.loadedLevel);
 		}
 	}
-}
-
-function OnCollisionExit(collision : Collision) {
-	onGround = false;
+	
+	onGround = true;
 }
