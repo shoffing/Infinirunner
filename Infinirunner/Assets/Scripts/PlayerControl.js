@@ -1,34 +1,26 @@
 ﻿#pragma strict
 
-public final static var SPEED = 20;
-public final static var GRAVITY = 14;
+private final static var SPEED = 20;
+private final static var GRAVITY = 14;
 
-var Clap : AudioClip;
+var clapSound : AudioClip;
 
-public var gravityFlipped = false;
-public var clickSwitch: boolean = false;
+private var gravityFlipped = false;
+private var lastCollisionTime : float;
 
 function Update() {
-	if(Input.GetButtonDown ("Fire1")){
-        clickSwitch = !clickSwitch;
- 
-        if (clickSwitch){
-        	gravityFlipped = true;
-            print("Up");
-            audio.PlayOneShot(Clap);
-        } else {
-        	gravityFlipped = false;
-            print("Down");
-            audio.PlayOneShot(Clap);
-        }
+	if(Input.GetButtonDown("Fire1") || Input.GetKeyDown("space")) {
+		gravityFlipped = !gravityFlipped;
+		audio.PlayOneShot(clapSound);
+		
+		onGround = false;
     }
-    //if(Input.GetKeyDown("r")) Application.LoadLevel("Level1");
-    if(Input.GetKeyDown("r")) transform.position = Vector3(-90,3,0);
-	//if(Input.GetKeyDown("w")) gravityFlipped = true;
-	//if(Input.GetKeyDown("s")) gravityFlipped = false;
 	
 	rigidbody.velocity.x = SPEED;
-	rigidbody.velocity.y = gravityFlipped ? GRAVITY : -GRAVITY;
+	
+	if(!onGround) {
+		rigidbody.velocity.y = gravityFlipped ? GRAVITY : -GRAVITY;
+	}
 }
 
 
@@ -39,4 +31,8 @@ function OnCollisionEnter(collision : Collision) {
 			Application.LoadLevel(Application.loadedLevel);
 		}
 	}
+}
+
+function OnCollisionExit(collision : Collision) {
+	onGround = false;
 }
