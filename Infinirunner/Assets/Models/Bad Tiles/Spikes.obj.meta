@@ -5,11 +5,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: Spikepit_polySurface47
     100002: //RootNode
+    100004: Spikepit_polySurface14
     400000: Spikepit_polySurface47
     400002: //RootNode
+    400004: Spikepit_polySurface14
     2300000: Spikepit_polySurface47
+    2300002: Spikepit_polySurface14
     3300000: Spikepit_polySurface47
+    3300002: Spikepit_polySurface14
     4300000: Spikepit_polySurface47
+    4300002: Spikepit_polySurface14
     9500000: //RootNode
   materials:
     importMaterials: 1
