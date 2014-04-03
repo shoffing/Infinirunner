@@ -10,10 +10,11 @@ private var gravityFlipped = false;
 private var lastCollisionTime : float;
 private var onGround : boolean;
 
-public var lastCheckpoint : Vector3;
+private var lastCheckpoint : Vector3;
 
 function Start() {
 	lastCheckpoint = transform.position;
+	spawnPlayer();
 }
 
 function Update() {
@@ -48,9 +49,24 @@ function OnCollisionEnter(collision : Collision) {
 	onGround = true;
 }
 
+
 function killPlayer() {
 	gravityFlipped = false;
 	transform.position = lastCheckpoint;
-	
 	audio.PlayOneShot(deathSound);
+	
+	spawnPlayer();
+}
+
+function spawnPlayer() {
+	transform.Find("ParticlesSpawn").GetComponent(ParticleSystem).Play();
+}
+
+
+function getLastCheckpoint() {
+	return lastCheckpoint;
+}
+
+function setLastCheckpoint(pos : Vector3) {
+	lastCheckpoint = pos;
 }

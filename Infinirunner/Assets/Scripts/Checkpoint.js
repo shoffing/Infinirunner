@@ -9,8 +9,8 @@ function Start() {
 }
 
 function OnTriggerEnter(other : Collider) {
-	if(other.gameObject.tag == "Player" && other.gameObject.GetComponent(PlayerControl).lastCheckpoint != transform.position) {
-		other.gameObject.GetComponent(PlayerControl).lastCheckpoint = transform.position;
+	if(other.gameObject.tag == "Player" && other.gameObject.GetComponent(PlayerControl).getLastCheckpoint() != transform.position) {
+		other.gameObject.GetComponent(PlayerControl).setLastCheckpoint(transform.position);
 		checkpointTextTimer = Time.realtimeSinceStartup;
 		
 		audio.Play();
