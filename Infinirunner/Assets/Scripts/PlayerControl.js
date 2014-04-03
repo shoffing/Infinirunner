@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
-private final static var SPEED = 20;
-private final static var GRAVITY = 14;
+private final static var SPEED = 18;
+private final static var GRAVITY = 18;
 
 var clapSound : AudioClip;
 var deathSound : AudioClip;
@@ -23,6 +23,10 @@ function Update() {
 		
 		onGround = false;
     }
+    
+    if(Mathf.Abs(rigidbody.velocity.x) < SPEED / 10) {
+    	killPlayer();
+    }
 	
 	rigidbody.velocity.x = SPEED;
 	
@@ -41,13 +45,6 @@ function Update() {
 }
 
 function OnCollisionEnter(collision : Collision) {
-	for (var contact : ContactPoint in collision.contacts) {
-		// Reset when we hit a wall
-		if(contact.normal == Vector3(-1, 0, 0)) {
-			killPlayer();
-		}
-	}
-	
 	onGround = true;
 }
 
