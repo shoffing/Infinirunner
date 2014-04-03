@@ -4,10 +4,17 @@ private final static var SPEED = 20;
 private final static var GRAVITY = 14;
 
 var clapSound : AudioClip;
+var deathSound : AudioClip;
 
 private var gravityFlipped = false;
 private var lastCollisionTime : float;
 private var onGround : boolean;
+
+public var lastCheckpoint : Vector3;
+
+function Start() {
+	lastCheckpoint = transform.position;
+}
 
 function Update() {
 	if(Input.GetButtonDown("Fire1") || Input.GetKeyDown("space")) {
@@ -37,9 +44,16 @@ function OnCollisionEnter(collision : Collision) {
 	for (var contact : ContactPoint in collision.contacts) {
 		// Reset when we hit a wall
 		if(contact.normal == Vector3(-1, 0, 0)) {
-			Application.LoadLevel(Application.loadedLevel);
+			killPlayer();
 		}
 	}
 	
 	onGround = true;
+}
+
+function killPlayer() {
+	gravityFlipped = false;
+	transform.position = lastCheckpoint;
+	
+	audio.PlayOneShot(deathSound);
 }

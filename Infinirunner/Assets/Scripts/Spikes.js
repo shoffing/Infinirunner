@@ -2,6 +2,6 @@
 
 function OnTriggerEnter(other : Collider) {
 	if(other.gameObject.tag == "Player") {
-		Application.LoadLevel(Application.loadedLevel);
+		other.gameObject.GetComponent(PlayerControl).killPlayer();
 	}
 }
