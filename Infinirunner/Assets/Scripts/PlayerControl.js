@@ -6,7 +6,11 @@ private final static var GRAVITY = 18;
 var clapSound : AudioClip;
 var deathSound : AudioClip;
 
+var playerColorRed : Material;
+var playerColorBlue : Material;
+
 private var gravityFlipped = false;
+private var playerIsRed = true;
 private var lastCollisionTime : float;
 private var onGround : boolean;
 
@@ -14,17 +18,34 @@ private var lastCheckpoint : Vector3;
 
 function Start() {
 	lastCheckpoint = transform.position;
+	transform.Find("PlayerModel").GetComponent(MeshRenderer).material = playerColorRed;
 	spawnPlayer();
 }
 
+// Player can change color with buttons, or by hitting a color changer thing?
+
+
 function Update() {
-	if(Input.GetButtonDown("Fire1") || Input.GetKeyDown("space")) {
+	if(Input.GetKeyDown("space")) {
 		gravityFlipped = !gravityFlipped;
 		audio.PlayOneShot(clapSound);
 		
 		onGround = false;
     }
     
+    // Color control
+    if(Input.GetKeyDown("left ctrl")) {
+    	playerIsRed = !playerIsRed;
+    	
+    	if(playerIsRed) {
+	    	transform.Find("PlayerModel").GetComponent(MeshRenderer).material = playerColorRed;
+	    } else {
+	    	transform.Find("PlayerModel").GetComponent(MeshRenderer).material = playerColorBlue;
+	    }
+    }
+    
+    
+    // Face-to-wall interaction algorithm
     if(Mathf.Abs(rigidbody.velocity.x) < SPEED / 10) {
     	killPlayer();
     }
@@ -49,7 +70,6 @@ function OnCollisionEnter(collision : Collision) {
 	onGround = true;
 }
 
-
 function killPlayer() {
 	gravityFlipped = false;
 	transform.position = lastCheckpoint;
@@ -62,9 +82,14 @@ function spawnPlayer() {
 	transform.Find("ParticlesSpawn").GetComponent(ParticleSystem).Play();
 }
 
+// #GETTERS
 
 function getLastCheckpoint() {
 	return lastCheckpoint;
+}
+
+function getPlayerIsRed() {
+	return playerIsRed;
 }
 
 function setLastCheckpoint(pos : Vector3) {
