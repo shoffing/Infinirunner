@@ -26,7 +26,7 @@ function Start() {
 
 
 function Update() {
-	if(Input.GetKeyDown("space")) {
+	if(Input.GetButtonDown("ChangeGravity")) {
 		gravityFlipped = !gravityFlipped;
 		audio.PlayOneShot(clapSound);
 		
@@ -34,7 +34,7 @@ function Update() {
     }
     
     // Color control
-    if(Input.GetKeyDown("left ctrl")) {
+    if(Input.GetButtonDown("ChangeColor")) {
     	playerIsRed = !playerIsRed;
     	
     	if(playerIsRed) {
