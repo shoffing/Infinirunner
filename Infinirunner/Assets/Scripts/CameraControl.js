@@ -17,6 +17,6 @@ function Update() {
 	var camOffsetX = 2 * Mathf.Tan(hfov / 2) * CAM_DISTANCE_Z * (0.5 - PERCENT);
 	
 	transform.position.x = player.transform.position.x + camOffsetX;
-	transform.position.y += (player.transform.position.y - transform.position.y) * 0.05;
+	transform.position.y += (player.transform.position.y - transform.position.y) * 0.1;
 	transform.position.z = player.transform.position.z - CAM_DISTANCE_Z;
 }
