@@ -3,11 +3,12 @@
 private static final var CAM_DISTANCE_Z : float = 13;
 private static final var PERCENT : float = 0.25;
 
-var player : GameObject;
+private var player : GameObject;
 private var cam : Camera;
 
 function Start() {
 	cam = GetComponent(Camera);
+	player = GameObject.FindWithTag("Player");
 }
 
 function Update() {
