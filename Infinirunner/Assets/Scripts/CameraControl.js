@@ -1,8 +1,20 @@
 ﻿#pragma strict
 
+private static final var PERCENT : float = 0.25;
+
 var player : GameObject;
+private var cam : Camera;
+
+function Start() {
+	cam = GetComponent(Camera);
+}
 
 function Update() {
-	transform.position.x = player.transform.position.x;
+	// Calculate horizontal FOV, distance to player on Z axis, and then finally how much to offset along X
+	var hfov = 2 * Mathf.Atan(Mathf.Tan(cam.fieldOfView * Mathf.Deg2Rad / 2) * cam.aspect);
+	var camDistZ = Mathf.Abs(transform.position.z - player.transform.position.z);
+	var camOffsetX = 2 * Mathf.Tan(hfov / 2) * camDistZ * (0.5 - PERCENT);
+	
+	transform.position.x = player.transform.position.x + camOffsetX;
 	transform.position.y += (player.transform.position.y - transform.position.y) * 0.05;
 }
