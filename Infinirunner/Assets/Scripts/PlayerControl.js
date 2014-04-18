@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
-private final static var SPEED = 18;
-private final static var GRAVITY = 18;
+private final static var SPEED = 15;
+private final static var GRAVITY = 15;
 
 var clapSound : AudioClip;
 var deathSound : AudioClip;
@@ -13,6 +13,7 @@ private var gravityFlipped = false;
 private var playerIsRed = true;
 private var lastCollisionTime : float;
 private var onGround : boolean;
+private var deathFrames : int;
 
 private var lastCheckpoint : Vector3;
 
@@ -46,18 +47,23 @@ function Update() {
     
     
     // Face-to-wall interaction algorithm
-    if(Mathf.Abs(rigidbody.velocity.x) < SPEED / 10) {
-    	killPlayer();
+    if(Mathf.Abs(rigidbody.velocity.x) < 1) {
+    	deathFrames++;
+    	if(deathFrames >= 3) {
+    		killPlayer();
+    	}
+    } else {
+    	deathFrames = 0;
     }
 	
 	rigidbody.velocity.x = SPEED;
 	
 	// Raytraces to find empty space
-	if(!Physics.Raycast(transform.position + Vector3(0, 0, 0.45), Vector3(0, gravityFlipped ? 1 : -1, 0), 0.7)) {
+	if(!Physics.Raycast(transform.position + Vector3(0, 0, 0.45), Vector3(1, gravityFlipped ? 1 : -1, 0).normalized, 0.7)) {
 		onGround = false;
 	}
 	
-	// Debug.DrawLine(transform.position + Vector3(0, 0, 0.45), transform.position + Vector3(0, 0, 0.45) + Vector3(0, gravityFlipped ? 1 : -1, 0) * 0.7, Color.red);
+	Debug.DrawLine(transform.position + Vector3(0, 0, 0.45), transform.position + Vector3(0.45, 0, 0.45) + Vector3(0, gravityFlipped ? 1 : -1, 0) * 0.7, Color.red);
 	
 	if(!onGround) {
 		rigidbody.velocity.y = gravityFlipped ? GRAVITY : -GRAVITY;
@@ -80,6 +86,7 @@ function killPlayer() {
 
 function spawnPlayer() {
 	transform.Find("ParticlesSpawn").GetComponent(ParticleSystem).Play();
+	rigidbody.velocity.x = SPEED;
 }
 
 // #GETTERS
