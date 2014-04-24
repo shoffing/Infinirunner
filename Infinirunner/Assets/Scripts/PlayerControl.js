@@ -17,6 +17,9 @@ private var deathFrames : int;
 
 private var lastCheckpoint : Vector3;
 
+private var isPause = false;
+private var PauseMenu : Rect = Rect(Screen.width/2 - 100, Screen.height/2 - 100, 200, 200);
+
 function Start() {
 	lastCheckpoint = transform.position;
 	transform.Find("PlayerModel").GetComponent(MeshRenderer).material = playerColorRed;
@@ -24,7 +27,6 @@ function Start() {
 }
 
 // Player can change color with buttons, or by hitting a color changer thing?
-
 
 function Update() {
 	if(Input.GetButtonDown("ChangeGravity")) {
@@ -45,6 +47,14 @@ function Update() {
 	    }
     }
     
+    if(Input.GetKeyDown(KeyCode.Escape)) {
+		isPause = !isPause;
+		if(isPause) {
+			Time.timeScale = 0;
+		} else {
+			Time.timeScale = 1;
+		}
+	}
     
     // Face-to-wall interaction algorithm
     if(Mathf.Abs(rigidbody.velocity.x) < 2) {
@@ -101,4 +111,22 @@ function getPlayerIsRed() {
 
 function setLastCheckpoint(pos : Vector3) {
 	lastCheckpoint = pos;
+}
+
+function OnGUI() {
+   if(isPause) {
+       GUI.Window(0, PauseMenu, PauseMenuFunc, "Pause Menu");
+   }
+}
+
+function PauseMenuFunc() {
+	if(GUILayout.Button("Main Menu")) {
+		Application.LoadLevel("MainMenu");
+	}
+	if(GUILayout.Button("Restart")) {
+		Application.LoadLevel("InGame");
+	}
+	if(GUILayout.Button("Quit")) {
+		Application.Quit();
+	}
 }
