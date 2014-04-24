@@ -47,7 +47,7 @@ function Update() {
     
     
     // Face-to-wall interaction algorithm
-    if(Mathf.Abs(rigidbody.velocity.x) < 1) {
+    if(Mathf.Abs(rigidbody.velocity.x) < 2) {
     	deathFrames++;
     	if(deathFrames >= 3) {
     		killPlayer();
