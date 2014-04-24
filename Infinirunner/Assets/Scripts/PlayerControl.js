@@ -21,6 +21,7 @@ private var isPause = false;
 private var PauseMenu : Rect = Rect(Screen.width/2 - 100, Screen.height/2 - 100, 200, 200);
 
 function Start() {
+	isPause = false;
 	lastCheckpoint = transform.position;
 	transform.Find("PlayerModel").GetComponent(MeshRenderer).material = playerColorRed;
 	spawnPlayer();
@@ -49,11 +50,6 @@ function Update() {
     
     if(Input.GetKeyDown(KeyCode.Escape)) {
 		isPause = !isPause;
-		if(isPause) {
-			Time.timeScale = 0;
-		} else {
-			Time.timeScale = 1;
-		}
 	}
     
     // Face-to-wall interaction algorithm
@@ -79,6 +75,13 @@ function Update() {
 		rigidbody.velocity.y = gravityFlipped ? GRAVITY : -GRAVITY;
 	} else {
 		rigidbody.velocity.y = gravityFlipped ? GRAVITY * 0.1 : -GRAVITY * 0.1;
+	}
+	
+	// do per frame because #yolo
+	if(isPause) {
+		Time.timeScale = 0;
+	} else {
+		Time.timeScale = 1;
 	}
 }
 
