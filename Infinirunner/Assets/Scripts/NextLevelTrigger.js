@@ -1,4 +1,7 @@
 ﻿#pragma strict
 
-public sceneToLoad : SceneView;
+public var sceneToLoad : String;
 
+function OnTriggerEnter(other : Collider) {
+	Application.LoadLevel(sceneToLoad);
+}
