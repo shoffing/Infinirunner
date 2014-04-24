@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
-private final static var SPEED = 15;
-private final static var GRAVITY = 15;
+private final static var SPEED = 12;
+private final static var GRAVITY = 12;
 
 var clapSound : AudioClip;
 var deathSound : AudioClip;
@@ -10,6 +10,7 @@ var playerColorRed : Material;
 var playerColorBlue : Material;
 
 private var gravityFlipped = false;
+private var playerRotationX = 0;
 private var playerIsRed = true;
 private var lastCollisionTime : float;
 private var onGround : boolean;
@@ -17,13 +18,26 @@ private var deathFrames : int;
 
 private var lastCheckpoint : Vector3;
 
+// MENU
 private var isPause = false;
 private var PauseMenu : Rect = Rect(Screen.width/2 - 100, Screen.height/2 - 100, 200, 200);
 
 function Start() {
 	isPause = false;
 	lastCheckpoint = transform.position;
-	transform.Find("PlayerModel").GetComponent(MeshRenderer).material = playerColorRed;
+   	
+   	var meshRenderers = GetComponentsInChildren(MeshRenderer);
+	for(var curMR : MeshRenderer in meshRenderers) {
+		var curMaterials = curMR.materials;
+		for(var i = 0; i < curMaterials.Length; i++) {
+			curMaterials[i] = playerColorRed;
+		}
+		curMR.materials = curMaterials;
+    }
+    
+    // Set animation speed
+    transform.Find("PlayerModel").GetComponent(Animation)["Run"].speed = 3f;
+    
 	spawnPlayer();
 }
 
@@ -37,14 +51,28 @@ function Update() {
 		onGround = false;
     }
     
+    // Rotation interpolation proclamation
+    var targetRotX = gravityFlipped ? 180 : 0;
+    playerRotationX += (targetRotX - playerRotationX) * 0.1;
+    
+   	transform.rotation = Quaternion.Euler(playerRotationX, 0, 0);
+    
+    
     // Color control
     if(Input.GetButtonDown("ChangeColor")) {
     	playerIsRed = !playerIsRed;
     	
-    	if(playerIsRed) {
-	    	transform.Find("PlayerModel").GetComponent(MeshRenderer).material = playerColorRed;
-	    } else {
-	    	transform.Find("PlayerModel").GetComponent(MeshRenderer).material = playerColorBlue;
+    	var meshRenderers = GetComponentsInChildren(MeshRenderer);
+    	for(var curMR : MeshRenderer in meshRenderers) {
+    		var curMaterials = curMR.materials;
+    		for(var i = 0; i < curMaterials.Length; i++) {
+		    	if(playerIsRed) {
+			    	curMaterials[i] = playerColorRed;
+			    } else {
+			    	curMaterials[i] = playerColorBlue;
+			    }
+			}
+			curMR.materials = curMaterials;
 	    }
     }
     
@@ -90,7 +118,6 @@ function OnCollisionEnter(collision : Collision) {
 }
 
 function killPlayer() {
-	gravityFlipped = false;
 	transform.position = lastCheckpoint;
 	audio.PlayOneShot(deathSound);
 	

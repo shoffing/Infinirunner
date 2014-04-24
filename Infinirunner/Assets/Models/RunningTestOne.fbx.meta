@@ -1,0 +1,261 @@
+fileFormatVersion: 2
+guid: 14a0def7ee4c090449093588114db783
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Full_Control
+    100002: Head
+    100004: Head1
+    100006: Head2
+    100008: Left_Ankle
+    100010: Left_Femur
+    100012: Left_Foot_Knee
+    100014: Left_Heel
+    100016: Left_Hip
+    100018: Left_Hip 1
+    100020: Left_Knee
+    100022: Left_Knee 1
+    100024: Left_Knee1
+    100026: Left_Thigh
+    100028: Left_Thigh2
+    100030: Left_Toe
+    100032: Pelvis
+    100034: Pelvis1
+    100036: RIght_Ankle
+    100038: Right_Femur
+    100040: Right_Foot
+    100042: Right_Heel
+    100044: Right_Hip
+    100046: Right_Hip 1
+    100048: Right_Knee
+    100050: Right_knee
+    100052: Right_Knee 1
+    100054: Right_Thigh
+    100056: Right_Thigh2
+    100058: Right_Toe
+    100060: //RootNode
+    100062: transform1
+    100064: transform2
+    400000: Full_Control
+    400002: Head
+    400004: Head1
+    400006: Head2
+    400008: Left_Ankle
+    400010: Left_Femur
+    400012: Left_Foot_Knee
+    400014: Left_Heel
+    400016: Left_Hip
+    400018: Left_Hip 1
+    400020: Left_Knee
+    400022: Left_Knee 1
+    400024: Left_Knee1
+    400026: Left_Thigh
+    400028: Left_Thigh2
+    400030: Left_Toe
+    400032: Pelvis
+    400034: Pelvis1
+    400036: RIght_Ankle
+    400038: Right_Femur
+    400040: Right_Foot
+    400042: Right_Heel
+    400044: Right_Hip
+    400046: Right_Hip 1
+    400048: Right_Knee
+    400050: Right_knee
+    400052: Right_Knee 1
+    400054: Right_Thigh
+    400056: Right_Thigh2
+    400058: Right_Toe
+    400060: //RootNode
+    400062: transform1
+    400064: transform2
+    2300000: Head1
+    2300002: Left_Ankle
+    2300004: Left_Femur
+    2300006: Left_Foot_Knee
+    2300008: Left_Hip 1
+    2300010: Left_Thigh
+    2300012: Left_Thigh2
+    2300014: Pelvis
+    2300016: RIght_Ankle
+    2300018: Right_Femur
+    2300020: Right_Foot
+    2300022: Right_Hip 1
+    2300024: Right_Thigh
+    2300026: Right_Thigh2
+    3300000: Head1
+    3300002: Left_Ankle
+    3300004: Left_Femur
+    3300006: Left_Foot_Knee
+    3300008: Left_Hip 1
+    3300010: Left_Thigh
+    3300012: Left_Thigh2
+    3300014: Pelvis
+    3300016: RIght_Ankle
+    3300018: Right_Femur
+    3300020: Right_Foot
+    3300022: Right_Hip 1
+    3300024: Right_Thigh
+    3300026: Right_Thigh2
+    4300000: RIght_Ankle
+    4300002: Right_Foot
+    4300004: Right_Thigh2
+    4300006: Right_Hip
+    4300008: Right_Thigh
+    4300010: Right_Femur
+    4300012: Left_Ankle
+    4300014: Left_Foot_Knee
+    4300016: Left_Thigh2
+    4300018: Left_Thigh
+    4300020: Left_Hip
+    4300022: Left_Femur
+    4300024: Pelvis
+    4300026: Head1
+    7400000: Run
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Run
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 34
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Full_Control
+        weight: 1
+      - path: Full_Control/transform1
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Head2
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Head2/transform2
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Head2/transform2/Head
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Head2/transform2/Head/Head1
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Left_Hip
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Left_Hip/Left_Femur
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Left_Hip/Left_Hip 1
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Left_Hip/Left_Knee 1
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Left_Hip/Left_Knee 1/Left_Foot_Knee
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Left_Hip/Left_Knee 1/Left_Toe
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Left_Hip/Left_Knee 1/Left_Toe/Left_Heel
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Left_Hip/Left_Knee 1/Left_Toe/Left_Heel/Left_Ankle
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Left_Hip/Left_Thigh
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Left_Hip/Left_Thigh2
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Pelvis
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Right_Hip
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Right_Hip/Right_Femur
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Right_Hip/Right_Hip 1
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Right_Hip/Right_Knee 1
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Right_Hip/Right_Knee 1/Right_Foot
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Right_Hip/Right_Knee 1/Right_Toe
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Right_Hip/Right_Knee 1/Right_Toe/Right_Heel
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Right_Hip/Right_Knee 1/Right_Toe/Right_Heel/RIght_Ankle
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Right_Hip/Right_Thigh
+        weight: 1
+      - path: Full_Control/transform1/Pelvis1/Right_Hip/Right_Thigh2
+        weight: 1
+      - path: Left_Knee
+        weight: 1
+      - path: Left_Knee/Left_Knee1
+        weight: 1
+      - path: Right_Knee
+        weight: 1
+      - path: Right_Knee/Right_knee
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .0219999999
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 

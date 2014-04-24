@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-private static final var CAM_DISTANCE_Z : float = 13;
+private static final var CAM_DISTANCE_Z : float = 10;
 private static final var PERCENT : float = 0.33;
 
 private var player : GameObject;
