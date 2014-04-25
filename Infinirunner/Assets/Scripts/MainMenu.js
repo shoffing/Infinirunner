@@ -4,7 +4,7 @@
 private var MainMenu : Rect = Rect(Screen.width/2 - 100, Screen.height/2 - 100, 200, 200);
 
 function OnGUI() {
-	GUI.Window(0, MainMenu, MainMenuFunc, "Main Menu");
+	GUI.Window(0, MainMenu, MainMenuFunc, "Infinirunner");
 }
 
 function MainMenuFunc() {
