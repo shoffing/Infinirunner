@@ -12,7 +12,7 @@ function Start() {
 }
 
 function Update() {
-	// Calculate horizontal FOV, distance to player on Z axis, and then finally how much to offset along X
+	//Calculate horizontal FOV, distance to player on Z axis, and then finally how much to offset along X
 	var hfov = 2 * Mathf.Atan(Mathf.Tan(cam.fieldOfView * Mathf.Deg2Rad / 2) * cam.aspect);
 	var camOffsetX = 2 * Mathf.Tan(hfov / 2) * CAM_DISTANCE_Z * (0.5 - PERCENT);
 	
