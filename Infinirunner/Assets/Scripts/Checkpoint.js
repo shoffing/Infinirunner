@@ -3,6 +3,7 @@
 public var checkpointTexture : Texture2D;
 private var checkpointTextTimer : float;
 private static final var CHECKPOINT_TEXT_DURATION : float = 1;
+private var deathsSinceLastCheckpoint : int;
 
 function Start() {
 	checkpointTextTimer = -9999;
@@ -10,6 +11,8 @@ function Start() {
 
 function OnTriggerEnter(other : Collider) {
 	if(other.gameObject.tag == "Player" && other.gameObject.GetComponent(PlayerControl).getLastCheckpoint() != transform.position) {
+		deathsSinceLastCheckpoint = other.gameObject.GetComponent(PlayerControl).getDeathsSinceLastCheckpoint();
+		
 		other.gameObject.GetComponent(PlayerControl).setLastCheckpoint(transform.position);
 		checkpointTextTimer = Time.realtimeSinceStartup;
 		

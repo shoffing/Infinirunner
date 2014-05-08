@@ -22,7 +22,15 @@ private var lastCheckpoint : Vector3;
 private var isPause = false;
 private var PauseMenu : Rect = Rect(Screen.width/2 - 100, Screen.height/2 - 100, 200, 200);
 
+// HUD
+private var deathsSinceLastCheckpoint : int;
+private var totalDeaths : int;
+
+
 function Start() {
+	deathsSinceLastCheckpoint = 0;
+	totalDeaths = 0;
+	
 	isPause = false;
 	lastCheckpoint = transform.position;
    	
@@ -120,6 +128,9 @@ function killPlayer() {
 	transform.position = lastCheckpoint;
 	audio.PlayOneShot(deathSound);
 	
+	deathsSinceLastCheckpoint++;
+	totalDeaths++;
+	
 	spawnPlayer();
 }
 
@@ -138,14 +149,38 @@ function getPlayerIsRed() {
 	return playerIsRed;
 }
 
+function getDeathsSinceLastCheckpoint() {
+	return deathsSinceLastCheckpoint;
+}
+
 function setLastCheckpoint(pos : Vector3) {
+	deathsSinceLastCheckpoint = 0;
 	lastCheckpoint = pos;
 }
 
 function OnGUI() {
-   if(isPause) {
-       GUI.Window(0, PauseMenu, PauseMenuFunc, "Pause Menu");
-   }
+	// Draw death counters
+	DrawQuad(Rect(10, 10, 300, 100), Color(58/255.0, 161/255.0, 191/255.0, 0.5));
+	
+	var labelStyle = GUI.skin.GetStyle("Label");
+	labelStyle.alignment = TextAnchor.UpperLeft;
+	labelStyle.fontSize = 18;
+	labelStyle.richText = true;
+	GUI.Label(Rect(15, 10, 300, 100), "<color='#F2385A'>Total Deaths: <b>" + totalDeaths + "</b></color>", labelStyle);
+	GUI.Label(Rect(15, 35, 300, 100), "<color='#F2385A'>Deaths since last checkpoint: <b>" + deathsSinceLastCheckpoint + "</b></color>", labelStyle);
+	
+	// Pause menu
+	if(isPause) {
+		GUI.Window(0, PauseMenu, PauseMenuFunc, "Pause Menu");
+	}
+}
+
+function DrawQuad(position : Rect, color : Color) {
+	var texture : Texture2D = new Texture2D(1, 1);
+	texture.SetPixel(0, 0, color);
+	texture.Apply();
+	GUI.skin.box.normal.background = texture;
+	GUI.Box(position, GUIContent.none);
 }
 
 function PauseMenuFunc() {
