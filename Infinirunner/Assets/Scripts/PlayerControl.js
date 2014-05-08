@@ -23,6 +23,7 @@ private var isPause = false;
 private var PauseMenu : Rect = Rect(Screen.width/2 - 100, Screen.height/2 - 100, 200, 200);
 
 // HUD
+var INFO_BOX_TEXTURE : Texture;
 private var deathsSinceLastCheckpoint : int;
 private var totalDeaths : int;
 
@@ -160,14 +161,14 @@ function setLastCheckpoint(pos : Vector3) {
 
 function OnGUI() {
 	// Draw death counters
-	DrawQuad(Rect(10, 10, 300, 100), Color(58/255.0, 161/255.0, 191/255.0, 0.5));
+	GUI.DrawTexture(Rect(0, 0, 500, 100 * (500/600f)), INFO_BOX_TEXTURE, ScaleMode.StretchToFill, true, 0);
 	
 	var labelStyle = GUI.skin.GetStyle("Label");
 	labelStyle.alignment = TextAnchor.UpperLeft;
 	labelStyle.fontSize = 18;
 	labelStyle.richText = true;
-	GUI.Label(Rect(15, 10, 300, 100), "<color='#F2385A'>Total Deaths: <b>" + totalDeaths + "</b></color>", labelStyle);
-	GUI.Label(Rect(15, 35, 300, 100), "<color='#F2385A'>Deaths since last checkpoint: <b>" + deathsSinceLastCheckpoint + "</b></color>", labelStyle);
+	GUI.Label(Rect(35, 10, 500, 100 * (500/600f)), "<color='#FFF'>Total Deaths: <b>" + totalDeaths + "</b></color>", labelStyle);
+	GUI.Label(Rect(35, 40, 500, 100 * (500/600f)), "<color='#FFF'>Deaths since last checkpoint: <b>" + deathsSinceLastCheckpoint + "</b></color>", labelStyle);
 	
 	// Pause menu
 	if(isPause) {
